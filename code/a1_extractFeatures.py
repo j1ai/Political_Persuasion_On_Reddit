@@ -34,10 +34,14 @@ CenterIDDict = {}
 LeftIDDict = {}
 RightIDDict = {}
 #Change this to CDF!!!
-AltFeats = np.load("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Alt_feats.dat.npy")
-CenterFeats = np.load("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Center_feats.dat.npy")
-LeftFeats = np.load("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Left_feats.dat.npy")
-RightFeats = np.load("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Right_feats.dat.npy")
+#AltFeats = np.load("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Alt_feats.dat.npy")
+#CenterFeats = np.load("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Center_feats.dat.npy")
+#LeftFeats = np.load("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Left_feats.dat.npy")
+#RightFeats = np.load("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Right_feats.dat.npy")
+AltFeats = np.load("/u/cs401/A1/feats/Alt_feats.dat.npy")
+CenterFeats = np.load("/u/cs401/A1/feats/Center_feats.dat.npy")
+LeftFeats = np.load("/u/cs401/A1/feats/Left_feats.dat.npy")
+RightFeats = np.load("/u/cs401/A1/feats/Right_feats.dat.npy")
 
 def extract1(comment):
     ''' This function extracts features from a single comment
@@ -235,7 +239,8 @@ def extract2(feats, comment_class, comment_id):
 
 def loadBristolNormsDict():
     #Change this to CDF !!!!!!!!!!!!
-    data = csv.DictReader(open('BristolNorms+GilhoolyLogie.csv'))
+    #data = csv.DictReader(open('BristolNorms+GilhoolyLogie.csv'))
+    data = csv.DictReader(open('/u/cs401/Wordlists/BristolNorms+GilhoolyLogie.csv'))
     for row in data:
         if row['WORD'] != '':
             entry = []
@@ -246,7 +251,8 @@ def loadBristolNormsDict():
 
 def loadRatingsWarriner():
     #Change this to CDF !!!!!!!!!!!!
-    data = csv.DictReader(open('Ratings_Warriner_et_al.csv'))
+    #data = csv.DictReader(open('Ratings_Warriner_et_al.csv'))
+    data = csv.DictReader(open('/u/cs401/Wordlists/Ratings_Warriner_et_al.csv'))
     for row in data:
         if row['Word'] != '':
             entry = []
@@ -257,22 +263,26 @@ def loadRatingsWarriner():
 
 def loadIDDicts():
     #Change this to CDF !!!!!!!!!!!!
-    with open ("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Alt_IDs.txt", "r") as altIDfile:
+    #with open ("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Alt_IDs.txt", "r") as altIDfile:
+    with open ("/u/cs401/A1/feats/Alt_IDs.txt", "r") as altIDfile:
         counter = 0
         for line in altIDfile:
             AltIDDict[line.strip()] = counter
             counter += 1
-    with open ("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Center_IDs.txt", "r") as centerIDfile:
+    #with open ("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Center_IDs.txt", "r") as centerIDfile:
+    with open ("/u/cs401/A1/feats/Center_IDs.txt", "r") as centerIDfile:
         counter = 0
         for line in centerIDfile:
             CenterIDDict[line.strip()] = counter
             counter += 1
-    with open ("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Left_IDs.txt", "r") as leftIDfile:
+    #with open ("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Left_IDs.txt", "r") as leftIDfile:
+    with open ("/u/cs401/A1/feats/Left_IDs.txt", "r") as leftIDfile:
         counter = 0
         for line in leftIDfile:
             LeftIDDict[line.strip()] = counter
             counter += 1 
-    with open ("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Right_IDs.txt", "r") as rightIDfile:
+    #with open ("C:\\Users\\LAI\\Desktop\\CSC401\\Political_Persuasion_On_Reddit\\feats\\Right_IDs.txt", "r") as rightIDfile:
+    with open ("/u/cs401/A1/feats/Right_IDs.txt", "r") as rightIDfile:
         counter = 0
         for line in rightIDfile:
             RightIDDict[line.strip()] = counter
@@ -303,8 +313,8 @@ def main(args):
     # TODO: Use extract2 to copy LIWC features (features 30-173)
     # into feats. (Note that these rely on each data point's class,
     # which is why we can't add them in extract1).
-    print(feats)
     np.savez_compressed(args.output, feats)
+    print('Features Extraction Done')	
 
     
 if __name__ == "__main__": 
