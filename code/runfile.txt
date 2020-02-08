@@ -1,0 +1,1 @@
+python a1_preproc.py 1002213384 --a1_dir "C:\Users\LAI\Desktop\CSC401\Political_Persuasion_On_Reddit" -o preproc.json
