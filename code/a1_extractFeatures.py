@@ -300,19 +300,14 @@ def main(args):
     comment_counter = 0
     for comment in data:
         cur_feats = extract1(comment['body'])
-        # print('Extract 1')
-        # print(cur_feats)
         commentID = comment['id']
         cat = comment['cat']
-        # print('Extract 2')
+        # TODO: Use extract2 to copy LIWC features (features 30-173)
+        # into feats. (Note that these rely on each data point's class,
+        # which is why we can't add them in extract1).
         modified_feats = extract2(cur_feats, cat, commentID)
-        # print('Done Extract 2')
-        # print(modified_feats)
         feats[comment_counter] = modified_feats
         comment_counter += 1
-    # TODO: Use extract2 to copy LIWC features (features 30-173)
-    # into feats. (Note that these rely on each data point's class,
-    # which is why we can't add them in extract1).
     np.savez_compressed(args.output, feats)
     print('Features Extraction Done')	
 
