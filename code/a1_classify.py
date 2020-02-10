@@ -10,10 +10,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import SGDClassifier
+from sklearn.naive_bayes import MultinomialNB
 import numpy as np 
 import random
 from sklearn.model_selection import KFold
 from collections import defaultdict
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import NearestCentroid
+from sklearn.tree import DecisionTreeClassifier
 
 CLASSIFIERS_NAME = {0 : 'SGDClassifier', 1 : 'GaussianNB', 2 : 'RandomForestClassifier', 3 : 'MLPClassifier', 4 : 'AdaBoostClassifier'}
 CLASSIFIERS = {}
@@ -88,7 +92,57 @@ def class31(output_dir, X_train, X_test, y_train, y_test):
             pass
     return iBest
 
-
+def alternativeClassifications(output_dir, X_train, X_test, y_train, y_test):
+    ''' This function performs alternative classification methods to those used in Task3
+    
+    Parameters
+       output_dir: path of directory to write output to
+       X_train: NumPy array, with the selected training features
+       X_test: NumPy array, with the selected testing features
+       y_train: NumPy array, with the selected training classes
+       y_test: NumPy array, with the selected testing classes
+    '''
+    print('Running Bonus Task: Alternative Classification methods')
+    best_accuracy = 0
+    with open(f"{output_dir}/a1_bonus.txt", "w") as outf:
+    # For each classifier, compute results and write the following output:
+        for i in range(5):
+            #NBclassifier
+            if i == 0:
+                #MLP Classifier with SoftMax with 10 hidden layers
+                classifier = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(10,10), random_state=401)
+                classifier_name = 'MLP Classifier with SoftMax with 10 x 10 hidden layers'
+            elif i == 1:
+                #MLP Classifier with SoftMax with 100x100 hidden layers
+                classifier = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(100, 100), random_state=401)
+                classifier_name = 'MLP Classifier with SoftMax with 100x100 hidden layers'
+            elif i == 2:
+                #AdaBoostClassifier with leanring_rate & n_estimators
+                classifier = AdaBoostClassifier(n_estimators=15, learning_rate=0.75)
+                classifier_name = 'AdaBoostClassifier with leanring_rate & n_estimators'
+            elif i == 3:
+                classifier = KNeighborsClassifier(n_neighbors=4)
+                classifier_name = 'KNeighborsClassifier'
+            elif i == 4:
+                classifier = NearestCentroid()
+                classifier_name = 'Nearest Centroid Classifier'
+            classifier.fit(X_train, y_train)
+            y_pred = classifier.predict(X_test)
+            conf_matrix = confusion_matrix(y_test, y_pred)
+            accuracy_value = accuracy(conf_matrix)
+            recall_values = recall(conf_matrix)
+            precision_values = precision(conf_matrix)
+            if accuracy_value > best_accuracy:
+                best_accuracy = accuracy_value
+                iBest = i
+            outf.write(f'Results for {classifier_name}:\n')  # Classifier name
+            outf.write(f'\tAccuracy: {accuracy_value:.4f}\n')
+            outf.write(f'\tRecall: {[round(item, 4) for item in recall_values]}\n')
+            outf.write(f'\tPrecision: {[round(item, 4) for item in precision_values]}\n')
+            outf.write(f'\tConfusion Matrix: \n{conf_matrix}\n\n')
+            pass
+    
+    
 def class32(output_dir, X_train, X_test, y_train, y_test, iBest):
     ''' This function performs experiment 3.2
     
@@ -258,4 +312,7 @@ if __name__ == "__main__":
     X_1k, y_1k = class32(args.output_dir, X_train, X_test, y_train, y_test, iBest)
     class33(args.output_dir, X_train, X_test, y_train, y_test, iBest, X_1k, y_1k)
     class34(args.output_dir, X_train, X_test, y_train, y_test, iBest)
+    #Running Bouns Task to test different classification methods
+    alternativeClassifications(args.output_dir, X_train, X_test, y_train, y_test)
+
     
