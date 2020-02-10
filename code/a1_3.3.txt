@@ -4,3 +4,19 @@ Accuracy for 1k: 0.3543
 Accuracy for full dataset: 0.3560
 Chosen feature intersection: [1, 2, 11, 5]
 Top-5 at higher: [1, 2, 5, 11, 163]
+
+(a) Features are starting from index = 0, and the intersection of the top k = 5 features with 1K and 32K data are the following:
+    1 : Number of first-person pronouns
+    2 : Number of second-person pronouns
+    5 : Number of past-tense verbs
+    11 : Number of adverbs
+(b) P-values are generally lower with more data given, as the smaller the p-value is, the more convincing it is 
+    and because of the decrease in variance of the unbiased estimator as the data is increasing.
+(c) Top 5 features
+    1 : Number of first-person pronouns
+    2 : Number of second-person pronouns
+    5 : Number of past-tense verbs
+    11 : Number of adverbs
+    163 : receptiviti_reward_bias
+    These features might different in different classes, as the phrases/words of choice of a person
+    are influenced by the political/cultural background which causes a differentiation between classes.
