@@ -1,1 +1,3 @@
-python a1_preproc.py 1002213384 --a1_dir "C:\Users\LAI\Desktop\CSC401\Political_Persuasion_On_Reddit" -o preproc.json
+python3.7 a1_preproc.py 1002213384 -o preproc.json
+python3.7 a1_extractFeatures.py -i preproc.json -o feats.npz
+python3.7 a1_classify.py -i feats.npz -o .

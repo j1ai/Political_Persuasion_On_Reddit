@@ -72,7 +72,6 @@ def extract1(comment):
     dmean_norms = []
     
     for token in comment.split():
-        #print(token)
         word = ''
         tag = ''
         #Treat //SYM & //NFP as a punctuation
@@ -98,8 +97,6 @@ def extract1(comment):
         #Convert to word to lowercase
         word = word.lower()   
         #Bristol Norms Dictionary LookUp
-        #print(word)
-        #print(tag)
         if word in BristolNormsDict:
             aoa_Norms.append(BristolNormsDict[word][0])
             img_Norms.append(BristolNormsDict[word][1])

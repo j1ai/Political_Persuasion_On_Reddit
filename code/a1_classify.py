@@ -104,7 +104,7 @@ def class32(output_dir, X_train, X_test, y_train, y_test, iBest):
        X_1k: numPy array, just 1K rows of X_train
        y_1k: numPy array, just 1K rows of y_train
    '''
-    print('Running Section 3.2 with Best Classifier: ' + CLASSIFIERS_NAME[iBest]))
+    print('Running Section 3.2 with Best Classifier: ' + CLASSIFIERS_NAME[iBest])
     training_examples = [1000, 5000, 10000, 15000, 20000]
     classifier = CLASSIFIERS[iBest]
     with open(f"{output_dir}/a1_3.2.txt", "w") as outf:
