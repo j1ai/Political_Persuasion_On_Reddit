@@ -125,6 +125,8 @@ def class32(output_dir, X_train, X_test, y_train, y_test, iBest):
             accuracy_value = accuracy(conf_matrix)
             outf.write(f'{num_train}: {accuracy_value:.4f}\n')
             pass
+        #outf.write(f'As more training number samples are provided in the training, the accuracies of the selected classifier are increasing until it reaches its optimal accuracy. \n')
+        #outf.write(f'')
     return (X_1k, y_1k)
 
 
@@ -144,7 +146,7 @@ def class33(output_dir, X_train, X_test, y_train, y_test, i, X_1k, y_1k):
     print('Running Section 3.3')
     
     with open(f"{output_dir}/a1_3.3.txt", "w") as outf:
-        k_feats = [5, 10, 15, 20, 25, 30, 35, 40, 50]
+        k_feats = [5, 50]
         # for each number of features k_feat, write the p-values for
         # that number of features:
         # For the 32k training set and each number of features k = {5, 50}, find the best k features according to this approach
