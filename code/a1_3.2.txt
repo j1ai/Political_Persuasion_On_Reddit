@@ -3,3 +3,7 @@
 10000: 0.4614
 15000: 0.4685
 20000: 0.4664
+
+I expect with more traning examples, the accuracies of the classifier will increase, as more features can be extracted from the training examples to better fit the model. Also, I expect the accuracies of the selected classifiers are increasing until it reaches its optimal accuracy and the accuracy after its optimal state will decrease, as more training examples will cause the classifier to produce a overfitted model. 
+
+From 1K of data to 15K of data, the accuracies are increasad by 7% and the classifier reaches its optimal accuracy at 15K as the accuracy for 20K of data has been slightly decreased by 0.2%. Overall, the reported accuracies are matched with my expectations. 

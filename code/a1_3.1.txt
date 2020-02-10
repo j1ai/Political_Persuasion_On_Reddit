@@ -29,14 +29,14 @@ Results for RandomForestClassifier:
  [ 576  402  711  355]]
 
 Results for MLPClassifier:
-	Accuracy: 0.4656
-	Recall: [0.6732, 0.4612, 0.543, 0.1932]
-	Precision: [0.5746, 0.3763, 0.4787, 0.4002]
+	Accuracy: 0.4637
+	Recall: [0.6621, 0.4777, 0.5425, 0.181]
+	Precision: [0.5745, 0.3723, 0.4795, 0.4039]
 	Confusion Matrix: 
-[[1341  293  233  125]
- [ 353  922  451  273]
- [ 228  476 1067  194]
- [ 412  759  478  395]]
+[[1319  322  236  115]
+ [ 351  955  444  249]
+ [ 222  495 1066  182]
+ [ 404  793  477  370]]
 
 Results for AdaBoostClassifier:
 	Accuracy: 0.4791
